@@ -76,8 +76,10 @@ vector<int> SumOfDivided::findPrimes(int input)
 void SumOfDivided::addToListOfPrimes(vector<int> newPrimes)
 {
   vector<int>::iterator PrimesIter = ListOfPrimes.begin();
+  cout << "adding to list \n";
   for(vector<int>::iterator iter = newPrimes.begin(); iter != newPrimes.end(); )
   {
+	  cout << "Iterating " << *iter << " vs " << *PrimesIter << endl;
     if((*iter) == (*PrimesIter))
     {
       /* prime already found for other input */
@@ -96,6 +98,7 @@ void SumOfDivided::addToListOfPrimes(vector<int> newPrimes)
       /* test against next of ListOfPrimes */
       PrimesIter++;
     }
+
   }
   return;
 }
@@ -106,9 +109,10 @@ string SumOfDivided::sumOfDivided(vector<int> &lst)
 {
   string result;
   vector<int> primes;
+  cout << "Starting summing \n";
   primes = findPrimes(15);
   addToListOfPrimes(primes);
-
+  cout << "First one added \n";
   primes = findPrimes(21);
   addToListOfPrimes(primes);
 
@@ -127,6 +131,7 @@ string SumOfDivided::sumOfDivided(vector<int> &lst)
 /* from codewars */
 void testequal(std::string ans, std::string sol)
 {
+	cout << "Comparing results" << endl;
 	int res;
     //Assert::That(ans, Equals(sol));
 	res = ans.compare(sol);
