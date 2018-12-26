@@ -19,9 +19,11 @@ public:
 private:
     static vector<int> findPrimes(int input);
     static bool isPrime(int input);
-    static bool addToListOfPrimes(vector<int> newPrimes);
+    static void addToListOfPrimes(vector<int> newPrimes);
     static vector<int> ListOfPrimes;
 };
+
+vector<int> SumOfDivided::ListOfPrimes;
 
 bool SumOfDivided::isPrime(int input)
 {
@@ -71,7 +73,7 @@ vector<int> SumOfDivided::findPrimes(int input)
   return primes;
 }
 
-bool addToListOfPrimes(vector<int> newPrimes)
+void SumOfDivided::addToListOfPrimes(vector<int> newPrimes)
 {
   vector<int>::iterator PrimesIter = ListOfPrimes.begin();
   for(vector<int>::iterator iter = newPrimes.begin(); iter != newPrimes.end(); )
@@ -86,7 +88,7 @@ bool addToListOfPrimes(vector<int> newPrimes)
     else if((*iter) < (*PrimesIter))
     {
       /* place before tested element of ListOfPrimes */
-      SumOfDivided::ListOfPrimes.insert(*iter);
+      ListOfPrimes.insert(PrimesIter, *iter);
       iter++;
     }
     else
@@ -95,9 +97,11 @@ bool addToListOfPrimes(vector<int> newPrimes)
       PrimesIter++;
     }
   }
-  return true;
+  return;
 }
 
+/* Main function of answer */
+/* Only this method should be public */
 string SumOfDivided::sumOfDivided(vector<int> &lst)
 {
   string result;
@@ -118,10 +122,15 @@ string SumOfDivided::sumOfDivided(vector<int> &lst)
   return result;
 }
 
+
+/* Support code here - not part of answer */
 /* from codewars */
 void testequal(std::string ans, std::string sol)
 {
-    Assert::That(ans, Equals(sol));
+	int res;
+    //Assert::That(ans, Equals(sol));
+	res = ans.compare(sol);
+	cout << "Result of comparison: " << res << endl;
 }
 
 /* example test in here */
